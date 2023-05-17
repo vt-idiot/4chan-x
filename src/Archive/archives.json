@@ -9,35 +9,15 @@
   "files": ["adv", "f", "hr", "mlpol", "mo", "o", "pol", "s4s", "sp", "tg", "trv", "tv", "x"],
   "reports": true
 }, {
-  "uid": 4,
-  "name": "Nyafuu Archive",
-  "domain": "archive.nyafuu.org",
-  "http": false,
-  "https": true,
-  "software": "foolfuuka",
-  "boards": ["bant", "c", "con", "e", "n", "news", "out", "p", "toy", "vip", "vmg", "vp", "vst", "w", "wg", "wsr"],
-  "files": ["bant", "c", "con", "e", "n", "news", "out", "p", "toy", "vip", "vmg", "vp", "vst", "w", "wg", "wsr"],
-  "reports": true
-}, {
-  "uid": 8,
-  "name": "Rebecca Black Tech",
-  "domain": "archive.rebeccablacktech.com",
-  "http": false,
-  "https": true,
-  "software": "foolfuuka",
-  "boards": ["cgl", "g", "mu"],
-  "files": ["cgl", "g", "mu"],
-  "reports": true
-}, {
   "uid": 10,
   "name": "warosu",
   "domain": "warosu.org",
   "http": false,
   "https": true,
   "software": "fuuka",
-  "boards": ["3", "biz", "cgl", "ck", "diy", "fa", "g", "ic", "jp", "lit", "sci", "tg", "vr"],
-  "files": ["3", "biz", "cgl", "ck", "diy", "fa", "g", "ic", "jp", "lit", "sci", "tg", "vr"],
-  "search": ["biz", "cgl", "ck", "diy", "fa", "g", "ic", "jp", "lit", "sci", "tg", "vr"]
+  "boards": ["3", "biz", "cgl", "ck", "diy", "fa", "ic", "jp", "lit", "sci", "vr", "vt"],
+  "files": ["3", "biz", "cgl", "ck", "diy", "fa", "ic", "jp", "lit", "sci", "vr", "vt"],
+  "search": ["biz", "cgl", "ck", "diy", "fa", "ic", "jp", "lit", "sci", "vr", "vt"]
 }, {
   "uid": 23,
   "name": "Desuarchive",
@@ -45,8 +25,8 @@
   "http": true,
   "https": true,
   "software": "foolfuuka",
-  "boards": ["a", "aco", "an", "c", "co", "d", "fit", "gif", "his", "int", "k", "m", "mlp", "q", "qa", "r9k", "tg", "trash", "vr", "wsg"],
-  "files": ["a", "aco", "an", "c", "co", "d", "fit", "gif", "his", "int", "k", "m", "mlp", "q", "qa", "r9k", "tg", "trash", "vr", "wsg"],
+  "boards": ["a", "aco", "an", "c", "cgl", "co", "d", "fit", "g", "his", "int", "k", "m", "mlp", "mu", "q", "qa", "r9k", "tg", "trash", "vr", "wsg"],
+  "files": ["a", "aco", "an", "c", "cgl", "co", "d", "fit", "g", "his", "int", "k", "m", "mlp", "mu", "q", "qa", "r9k", "tg", "trash", "vr"],
   "reports": true
 }, {
   "uid": 24,
@@ -55,9 +35,9 @@
   "http": false,
   "https": true,
   "software": "foolfuuka",
-  "boards": ["cm", "co", "ic", "sci", "tg", "vip", "y"],
-  "files": ["cm", "co", "ic", "sci", "tg", "vip", "y"],
-  "search": ["cm", "co", "ic", "sci", "tg", "y"]
+  "boards": ["cm", "co", "ic", "sci", "vip", "y"],
+  "files": ["cm", "co", "ic", "sci", "vip", "y"],
+  "search": ["cm", "co", "ic", "sci", "y"]
 }, {
   "uid": 25,
   "name": "arch.b4k.co",
@@ -65,18 +45,9 @@
   "http": true,
   "https": true,
   "software": "foolfuuka",
-  "boards": ["g", "mlp", "v", "vg", "vm", "vmg", "vp", "vrpg", "vst"],
-  "files": [],
-  "search": ["v", "vg", "vm", "vmg", "vrpg", "vst"]
-}, {
-  "uid": 28,
-  "name": "bstats",
-  "domain": "archive.b-stats.org",
-  "http": false,
-  "https": true,
-  "software": "foolfuuka",
-  "boards": ["f", "cm", "hm", "lgbt", "news", "qst", "trash", "y"],
-  "files": []
+  "boards": ["g", "mlp", "qb", "v", "vg", "vm", "vmg", "vp", "vrpg", "vst"],
+  "files": ["qb", "v", "vg", "vm", "vmg", "vp", "vrpg", "vst"],
+  "search": ["qb", "v", "vg", "vm", "vmg", "vp", "vrpg", "vst"]
 }, {
   "uid": 29,
   "name": "Archived.Moe",
@@ -84,9 +55,9 @@
   "http": true,
   "https": true,
   "software": "foolfuuka",
-  "boards": ["3", "a", "aco", "adv", "an", "asp", "b", "bant", "biz", "c", "can", "cgl", "ck", "cm", "co", "cock", "con", "d", "diy", "e", "f", "fa", "fap", "fit", "fitlit", "g", "gd", "gif", "h", "hc", "his", "hm", "hr", "i", "ic", "int", "jp", "k", "lgbt", "lit", "m", "mlp", "mlpol", "mo", "mtv", "mu", "n", "news", "o", "out", "outsoc", "p", "po", "pol", "q", "qa", "qst", "r", "r9k", "s", "s4s", "sci", "soc", "sp", "spa", "t", "tg", "toy", "trash", "trv", "tv", "u", "v", "vg", "vint", "vip", "vmg", "vp", "vr", "vrpg", "w", "wg", "wsg", "wsr", "x", "y"],
-  "files": ["can", "cock", "con", "fap", "fitlit", "gd", "mlpol", "mo", "mtv", "outsoc", "po", "q", "qst", "spa", "vint", "vip"],
-  "search": ["aco", "adv", "an", "asp", "b", "bant", "c", "can", "cgl", "ck", "cm", "cock", "con", "d", "diy", "e", "f", "fap", "fitlit", "gd", "gif", "h", "hc", "his", "hm", "hr", "i", "ic", "lgbt", "lit", "mlpol", "mo", "mtv", "n", "news", "o", "out", "outsoc", "p", "po", "q", "qa", "qst", "r", "s", "soc", "spa", "trv", "u", "vint", "vip", "vrpg", "w", "wg", "wsg", "wsr", "x", "y"],
+  "boards": ["3", "a", "aco", "adv", "an", "asp", "b", "bant", "biz", "c", "can", "cgl", "ck", "cm", "co", "cock", "con", "d", "diy", "e", "f", "fa", "fap", "fit", "fitlit", "g", "gd", "gif", "h", "hc", "his", "hm", "hr", "i", "ic", "int", "jp", "k", "lgbt", "lit", "m", "mlp", "mlpol", "mo", "mtv", "mu", "n", "news", "o", "out", "outsoc", "p", "po", "pol", "pw", "q", "qa", "qb", "qst", "r", "r9k", "s", "s4s", "sci", "soc", "sp", "spa", "t", "tg", "toy", "trash", "trv", "tv", "u", "v", "vg", "vint", "vip", "vm", "vmg", "vp", "vr", "vrpg", "vst", "vt", "w", "wg", "wsg", "wsr", "x", "xs", "y"],
+  "files": ["can", "cock", "con", "fap", "fitlit", "gd", "mlpol", "mo", "mtv", "outsoc", "po", "q", "qb", "qst", "spa", "vint", "vip"],
+  "search": ["aco", "adv", "an", "asp", "b", "bant", "biz", "c", "can", "cgl", "ck", "cm", "cock", "con", "d", "diy", "e", "f", "fap", "fitlit", "gd", "gif", "h", "hc", "his", "hm", "hr", "i", "ic", "lgbt", "lit", "mlpol", "mo", "mtv", "n", "news", "o", "out", "outsoc", "p", "po", "pw", "q", "qa", "qst", "r", "s", "soc", "spa", "trv", "u", "vint", "vip", "vrpg", "w", "wg", "wsg", "wsr", "x", "y"],
   "reports": true
 }, {
   "uid": 30,
@@ -115,7 +86,27 @@
   "http": false,
   "https": true,
   "software": "foolfuuka",
-  "boards": ["jp", "vrpg"],
-  "files": ["jp", "vrpg"],
+  "boards": ["c", "g", "jp", "mu", "vp", "vrpg", "vt"],
+  "files": [],
+  "reports": true
+}, {
+  "uid": 36,
+  "name": "palanq.win",
+  "domain": "archive.palanq.win",
+  "http": false,
+  "https": true,
+  "software": "foolfuuka",
+  "boards": ["bant", "c", "con", "e", "i", "n", "news", "out", "p", "pw", "qst", "toy", "vip", "vp", "vt", "w", "wg", "wsr"],
+  "files": ["bant", "c", "e", "i", "n", "news", "out", "p", "pw", "qst", "toy", "vip", "vp", "vt", "w", "wg", "wsr"],
+  "reports": true
+}, {
+  "uid": 37,
+  "name": "Eientei",
+  "domain": "eientei.xyz",
+  "http": false,
+  "https": true,
+  "software": "Eientei",
+  "boards": ["3", "i", "sci", "xs"],
+  "files": ["3", "i", "sci", "xs"],
   "reports": true
 }]

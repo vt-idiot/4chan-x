@@ -8,12 +8,6 @@ Main =
       return if '<%= meta.name %> antidup' of w
       w['<%= meta.name %> antidup'] = true
 
-    if location.hostname is 'www.google.com'
-      $.get 'Captcha Fixes', true, ({'Captcha Fixes': enabled}) ->
-        if enabled
-          $.ready -> Captcha.fixes.init()
-      return
-
     # Don't run inside ad iframes.
     try
       return if window.frameElement and window.frameElement.src in ['', 'about:blank']
@@ -86,11 +80,15 @@ Main =
     Conf['Toggleable Thread Watcher'] = true
     Conf['siteSoftware'] = ''
     Conf['Use Faster Image Host'] = 'true'
+    Conf['Captcha Fixes'] = true
+    Conf['captchaServiceDomain'] = ''
+    Conf['captchaServiceKey'] = $.dict()
 
     # Enforce JS whitelist
     if (
       /\.4chan(?:nel)?\.org$/.test(location.hostname) and
       !SW.yotsuba.regexp.pass.test(location.href) and
+      !SW.yotsuba.regexp.captcha.test(location.href) and
       !$$('script:not([src])', d).filter((s) -> /this\[/.test(s.textContent)).length
     )
       ($.getSync or $.get) {'jsWhitelist': Conf['jsWhitelist']}, ({jsWhitelist}) ->
@@ -650,7 +648,6 @@ Main =
     ['Reply Hiding Buttons',      PostHiding]
     ['Recursive',                 Recursive]
     ['Strike-through Quotes',     QuoteStrikeThrough]
-    ['Captcha Solving Service',   Captcha.service]
     ['Quick Reply Personas',      QR.persona]
     ['Quick Reply',               QR]
     ['Cooldown',                  QR.cooldown]

@@ -13,28 +13,14 @@
     "cssGuide": "https://github.com/ccd0/4chan-x/wiki/Styling-Guide",
     "license": "https://github.com/ccd0/4chan-x/blob/master/LICENSE",
     "changelog": "https://github.com/ccd0/4chan-x/blob/master/CHANGELOG.md",
-    "issues": "https://gitreports.com/issue/ccd0/4chan-x",
-    "newIssue": "https://gitreports.com/issue/ccd0/4chan-x?issue_title=%title&details=%details",
+    "issues": "https://github.com/ccd0/4chan-x/issues",
+    "newIssue": "https://github.com/ccd0/4chan-x/issues",
     "newIssueMaxLength": 8181,
     "alternatives": "https://www.4chan-x.net/4chan_alternatives.html",
     "appid": "lacclbnghgdicfifcamcmcnilckjamag",
     "appidGecko": "4chan-x@4chan-x.net",
     "chromeStoreID": "ohnjgmpcibpbafdlkimncjhflgedgpam",
     "recaptchaKey": "6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc",
-    "captchaServiceLinks": [
-      [
-        "captcha.guru",
-        "https://captcha.guru/"
-      ],
-      [
-        "AZcaptcha",
-        "https://azcaptcha.com/"
-      ],
-      [
-        "2captcha",
-        "https://2captcha.com/"
-      ]
-    ],
     "distBranch": "gh-pages",
     "includes_only": [
       "*://boards.4chan.org/*",
@@ -61,8 +47,8 @@
       "https://gnfos.com/*",
       "https://himasugi.blog/*",
       "https://www.himasugi.blog/*",
-      "https://kakashi-nenpo.com/*",
-      "https://www.kakashi-nenpo.com/*",
+      "https://kakashinenpo.com/*",
+      "https://www.kakashinenpo.com/*",
       "https://kissu.moe/*",
       "https://www.kissu.moe/*",
       "https://lainchan.org/*",
@@ -72,7 +58,6 @@
       "https://www.ota-ch.com/*",
       "https://ponyville.us/*",
       "https://www.ponyville.us/*",
-      "https://samachan.org/*",
       "https://smuglo.li/*",
       "https://notso.smuglo.li/*",
       "https://smugloli.net/*",
@@ -83,13 +68,7 @@
       "https://www.sushigirl.us/*",
       "https://tvch.moe/*"
     ],
-    "matches_extra": [
-      "https://www.google.com/recaptcha/api2/anchor?k=6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc*",
-      "https://www.google.com/recaptcha/api2/frame?*&k=6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc*",
-      "https://www.google.com/recaptcha/api2/frame?*&k=887877714&*",
-      "https://www.google.com/recaptcha/api2/bframe?*&k=6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc*",
-      "*://www.google.com/recaptcha/api/fallback?k=6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc*"
-    ],
+    "matches_extra": [],
     "exclude_matches": [
       "*://www.4chan.org/advertise",
       "*://www.4chan.org/advertise?*",
@@ -122,15 +101,15 @@
     }
   },
   "devDependencies": {
-    "chrome-webstore-upload": "^0.4.2",
+    "chrome-webstore-upload": "^1.0.0",
     "coffeescript": "=1.12.7",
     "esprima": "^4.0.1",
     "font-awesome": "=4.7.0",
-    "jshint": "^2.12.0",
-    "jszip": "^3.5.0",
+    "jshint": "^2.13.4",
+    "jszip": "^3.10.0",
     "lodash.template": "^4.5.0",
-    "markdown-it": "^12.0.4",
-    "markdown-it-anchor": "^7.0.0",
+    "markdown-it": "^12.3.2",
+    "markdown-it-anchor": "^7.1.0",
     "request": "^2.88.2"
   },
   "repository": {
@@ -150,6 +129,5 @@
   "readmeFilename": "README.md",
   "engines": {
     "node": ">=0.10"
-  },
-  "dependencies": {}
+  }
 }

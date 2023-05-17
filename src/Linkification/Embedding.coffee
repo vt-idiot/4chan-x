@@ -422,12 +422,16 @@ Embedding =
         text: (_) -> _.title
     ,
       key: 'TwitchTV'
-      regExp: /^\w+:\/\/(?:www\.|secure\.)?twitch\.tv\/(\w[^#\&\?]*)/
+      regExp: /^\w+:\/\/(?:www\.|secure\.|clips\.|m\.)?twitch\.tv\/(\w[^#\&\?]*)/
       el: (a) ->
-        m = a.dataset.uid.match /(\w+)(?:\/v\/(\d+))?/
-        url = "//player.twitch.tv/?#{if m[2] then "video=v#{m[2]}" else "channel=#{m[1]}"}&autoplay=false&parent=#{location.hostname}"
-        if (time = a.dataset.href.match /\bt=(\w+)/)
-          url += "&time=#{time[1]}"
+        m = a.dataset.href.match /^\w+:\/\/(?:(clips\.)|\w+\.)?twitch\.tv\/(?:\w+\/)?(clip\/)?(\w[^#\&\?]*)/;
+        if m[1] or m[2]
+          url = "//clips.twitch.tv/embed?clip=#{m[3]}&parent=#{location.hostname}"
+        else
+          m = a.dataset.uid.match /(\w+)(?:\/(?:v\/)?(\d+))?/
+          url = "//player.twitch.tv/?#{if m[2] then "video=v#{m[2]}" else "channel=#{m[1]}"}&autoplay=false&parent=#{location.hostname}"
+          if (time = a.dataset.href.match /\bt=(\w+)/)
+            url += "&time=#{time[1]}"
         el = $.el 'iframe',
           src: url
         el.setAttribute "allowfullscreen", "true"
@@ -486,13 +490,11 @@ Embedding =
       regExp: /^\w+:\/\/(?:(?:www\.|old\.)?vocaroo\.com|voca\.ro)\/((?:i\/)?\w+)/
       style: ''
       el: (a) ->
-        el = $.el 'audio',
-          controls: true
-          preload: 'auto'
-        el.src = if /^i\//.test(a.dataset.uid)
-          "https://old.vocaroo.com/media_command.php?media=#{a.dataset.uid.replace('i/', '')}&command=download_mp3"
-        else
-          "https://media1.vocaroo.com/mp3/#{a.dataset.uid}"
+        el = $.el 'iframe'
+        el.width = 300
+        el.height = 60
+        el.setAttribute('frameborder', 0)
+        el.src = "https://vocaroo.com/embed/#{a.dataset.uid.replace(/^i\//, '')}?autoplay=0"
         el
     ,
       key: 'YouTube'

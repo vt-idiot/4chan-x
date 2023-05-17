@@ -545,6 +545,14 @@ Settings =
     if compareString < '00001.00014.00020.00004'
       if data['archiveLists']?
         set 'archiveLists', data['archiveLists'].replace('https://nstepien.github.io/archives.json/archives.json', 'https://4chenz.github.io/archives.json/archives.json')
+    if compareString < '00001.00014.00022.00003'
+      if data['sauces']?
+        set 'sauces', data['sauces'].replace(/^#?\s*https:\/\/www\.google\.com\/searchbyimage\?image_url=%(IMG|T?URL)&safe=off(?=$|;)/mg, 'https://www.google.com/searchbyimage?sbisrc=4chanx&image_url=%$1&safe=off')
+        if compareString is '00001.00014.00022.00002' and not /\bsbisrc=/.test(data['sauces'])
+          set 'sauces', data['sauces'].replace(/^#?\s*https:\/\/lens\.google\.com\/uploadbyurl\?url=%(IMG|T?URL)(?=$|;)/m, 'https://www.google.com/searchbyimage?sbisrc=4chanx&image_url=%$1&safe=off')
+      addSauces [
+        '#https://lens.google.com/uploadbyurl?url=%IMG;text:lens'
+      ]
     changes
 
   loadSettings: (data, cb) ->
@@ -612,7 +620,7 @@ Settings =
       $.id('lastarchivecheck').textContent = 'never'
 
     items = $.dict()
-    for name, input of inputs when name not in ['captchaServiceKey', 'Interval', 'Custom CSS']
+    for name, input of inputs when name not in ['Interval', 'Custom CSS']
       items[name] = Conf[name]
       event = if (
         input.nodeName is 'SELECT' or
@@ -634,11 +642,6 @@ Settings =
     listImageHost = $.id 'list-fourchanImageHost'
     for textContent in ImageHost.suggestions
       $.add listImageHost, $.el 'option', {textContent}
-
-    $.on inputs['captchaServiceKey'], 'input', Settings.captchaServiceKey
-    $.get 'captchaServiceKey', Conf['captchaServiceKey'], ({captchaServiceKey}) ->
-      Conf['captchaServiceKey'] = captchaServiceKey
-      Settings.captchaServiceDomainList()
 
     interval  = inputs['Interval']
     customCSS = inputs['Custom CSS']
@@ -770,31 +773,6 @@ Settings =
       $.set 'selectedArchives', selectedArchives
       Conf['selectedArchives'] = selectedArchives
       Redirect.selectArchives()
-
-  captchaServiceDomain: ->
-    $.get 'captchaServiceKey', Conf['captchaServiceKey'], ({captchaServiceKey}) =>
-      keyInput = $('[name=captchaServiceKey]')
-      keyInput.value = captchaServiceKey[@value.trim()] or ''
-      keyInput.disabled = !@value.trim()
-
-  captchaServiceKey: ->
-    domain = Conf['captchaServiceDomain']
-    value = @value.trim()
-    Conf['captchaServiceKey'][domain] = value
-    $.get 'captchaServiceKey', Conf['captchaServiceKey'], ({captchaServiceKey}) ->
-      captchaServiceKey[domain] = value
-      delete captchaServiceKey[domain] unless value or $.hasOwn(Config['captchaServiceKey'][0], domain)
-      Conf['captchaServiceKey'] = captchaServiceKey
-      $.set 'captchaServiceKey', captchaServiceKey
-      Settings.captchaServiceDomainList()
-
-  captchaServiceDomainList: ->
-    list = $.id 'list-captchaServiceDomain'
-    $.rmAll list
-    for domain of Conf['captchaServiceKey']
-      $.add list, $.el 'option',
-        textContent: domain
-    return
 
   boardnav: ->
     Header.generateBoardList @value

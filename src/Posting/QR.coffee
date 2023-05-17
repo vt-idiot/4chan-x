@@ -26,8 +26,6 @@ QR =
 
     @posts = []
 
-    @captcha = Captcha.v2
-
     $.on d, '4chanXInitFinished', -> BoardConfig.ready QR.initReady
 
     Callbacks.Post.push
@@ -50,6 +48,8 @@ QR =
     Header.addShortcut 'qr', sc, 540
 
   initReady: ->
+    captchaVersion = if $('#g-recaptcha, #captcha-forced-noscript') then 'v2' else 't'
+    QR.captcha = Captcha[captchaVersion]
     QR.postingIsEnabled = true
 
     {config} = g.BOARD
@@ -310,35 +310,36 @@ QR =
     postRange.selectNode root
     text = if post.board.ID is g.BOARD.ID then ">>#{post}\n" else ">>>/#{post.board}/#{post}\n"
     for i in [0...sel.rangeCount]
-      range = sel.getRangeAt i
-      # Trim range to be fully inside post
-      if range.compareBoundaryPoints(Range.START_TO_START, postRange) < 0
-        range.setStartBefore root
-      if range.compareBoundaryPoints(Range.END_TO_END, postRange) > 0
-        range.setEndAfter root
+      try
+        range = sel.getRangeAt i
+        # Trim range to be fully inside post
+        if range.compareBoundaryPoints(Range.START_TO_START, postRange) < 0
+          range.setStartBefore root
+        if range.compareBoundaryPoints(Range.END_TO_END, postRange) > 0
+          range.setEndAfter root
 
-      continue unless range.toString().trim()
+        continue unless range.toString().trim()
 
-      frag  = range.cloneContents()
-      ancestor = range.commonAncestorContainer
-      # Quoting the insides of a spoiler/code tag.
-      if $.x 'ancestor-or-self::*[self::s or contains(@class,"removed-spoiler")]', ancestor
-        $.prepend frag, $.tn '[spoiler]'
-        $.add     frag, $.tn '[/spoiler]'
-      if insideCode = $.x 'ancestor-or-self::pre[contains(@class,"prettyprint")]', ancestor
-        $.prepend frag, $.tn '[code]'
-        $.add     frag, $.tn '[/code]'
-      for node in $$ (if insideCode then 'br' else '.prettyprint br'), frag
-        $.replace node, $.tn '\n'
-      for node in $$ 'br', frag
-        $.replace node, $.tn '\n>' unless node is frag.lastChild
-      g.SITE.insertTags?(frag)
-      for node in $$ '.linkify[data-original]', frag
-        $.replace node, $.tn node.dataset.original
-      for node in $$ '.embedder', frag
-        $.rm node.previousSibling if node.previousSibling?.nodeValue is ' '
-        $.rm node
-      text += ">#{frag.textContent.trim()}\n"
+        frag  = range.cloneContents()
+        ancestor = range.commonAncestorContainer
+        # Quoting the insides of a spoiler/code tag.
+        if $.x 'ancestor-or-self::*[self::s or contains(@class,"removed-spoiler")]', ancestor
+          $.prepend frag, $.tn '[spoiler]'
+          $.add     frag, $.tn '[/spoiler]'
+        if insideCode = $.x 'ancestor-or-self::pre[contains(@class,"prettyprint")]', ancestor
+          $.prepend frag, $.tn '[code]'
+          $.add     frag, $.tn '[/code]'
+        for node in $$ (if insideCode then 'br' else '.prettyprint br'), frag
+          $.replace node, $.tn '\n'
+        for node in $$ 'br', frag
+          $.replace node, $.tn '\n>' unless node is frag.lastChild
+        g.SITE.insertTags?(frag)
+        for node in $$ '.linkify[data-original]', frag
+          $.replace node, $.tn node.dataset.original
+        for node in $$ '.embedder', frag
+          $.rm node.previousSibling if node.previousSibling?.nodeValue is ' '
+          $.rm node
+        text += ">#{frag.textContent.trim()}\n"
 
     QR.openPost()
     {com, thread} = QR.nodes
@@ -645,8 +646,8 @@ QR =
     addFlag = (value, textContent) ->
       $.add select, $.el 'option', {value, textContent}
 
-    addFlag '0', 'Geographic Location'
-    for value, textContent of BoardConfig.troll_flags
+    addFlag '0', (if g.BOARD.config.country_flags then 'Geographic Location' else 'None')
+    for value, textContent of g.BOARD.config.board_flags
       addFlag value, textContent
 
     select
@@ -658,7 +659,7 @@ QR =
       $.rm nodes.flag
       delete nodes.flag
 
-    if g.BOARD.config.troll_flags
+    if g.BOARD.config.board_flags
       flag = QR.flags()
       flag.dataset.name    = 'flag'
       flag.dataset.default = '0'
@@ -707,8 +708,10 @@ QR =
     if g.BOARD.ID is 'r9k' and !post.com?.match(/[a-z-]/i)
       err or= 'Original comment required.'
 
-    if QR.captcha.isEnabled and !(/\b_ct=/.test(d.cookie) and threadID) and !(err and !force)
-      captcha = QR.captcha.getOne(!!threadID) or Captcha.cache.request(!!threadID)
+    if QR.captcha.isEnabled and !(QR.captcha is Captcha.v2 and /\b_ct=/.test(d.cookie) and threadID) and !(err and !force)
+      captcha = QR.captcha.getOne(!!threadID)
+      if QR.captcha is Captcha.v2
+        captcha or= Captcha.cache.request(!!threadID)
       unless captcha
         err = 'No valid captcha.'
         QR.captcha.setup(!QR.cooldown.auto or d.activeElement is QR.nodes.status)
@@ -727,6 +730,9 @@ QR =
     post.lock()
 
     formData =
+      MAX_FILE_SIZE: QR.max_size
+      mode:     'regist'
+      pwd:      QR.persona.getPassword()
       resto:    threadID
       name:     post.name unless QR.forcedAnon
       email:    post.email
@@ -736,8 +742,6 @@ QR =
       filetag:  filetag
       spoiler:  post.spoiler
       flag:     post.flag
-      mode:     'regist'
-      pwd:      QR.persona.getPassword()
 
     options =
       responseType: 'document'
@@ -759,11 +763,15 @@ QR =
     cb = (response) ->
       if response?
         QR.currentCaptcha = response
-        if response.challenge?
-          options.form.append 'recaptcha_challenge_field', response.challenge
-          options.form.append 'recaptcha_response_field', response.response
+        if QR.captcha is Captcha.v2
+          if response.challenge?
+            options.form.append 'recaptcha_challenge_field', response.challenge
+            options.form.append 'recaptcha_response_field', response.response
+          else
+            options.form.append 'g-recaptcha-response', response.response
         else
-          options.form.append 'g-recaptcha-response', response.response
+          for key, val of response
+            options.form.append key, val
       QR.req = $.ajax "https://sys.#{location.hostname.split('.')[1]}.org/#{g.BOARD}/post", options
       QR.req.progress = '...'
 
@@ -772,10 +780,11 @@ QR =
       QR.req =
         progress: '...'
         abort: ->
-          Captcha.cache.abort()
+          if QR.captcha is Captcha.v2
+            Captcha.cache.abort()
           cb = null
       captcha (response) ->
-        if Captcha.cache.haveCookie()
+        if QR.captcha is Captcha.v2 and Captcha.cache.haveCookie()
           cb?()
           Captcha.cache.save response if response
         else if response
@@ -803,10 +812,11 @@ QR =
       $('a', err)?.target = '_blank' # duplicate image link
     else if (connErr = (!@response or @response.title isnt 'Post successful!'))
       err = QR.connectionError()
-      Captcha.cache.save QR.currentCaptcha if QR.currentCaptcha
+      Captcha.cache.save QR.currentCaptcha if QR.captcha is Captcha.v2 and QR.currentCaptcha
     else if @status isnt 200
       err = "Error #{@statusText} (#{@status})"
 
+    QR.captcha.setUsed?() unless connErr
     delete QR.currentCaptcha
 
     if err
@@ -924,7 +934,7 @@ QR =
     if (oldReq = QR.req) and !QR.req.isUploadFinished
       delete QR.req
       oldReq.abort()
-      Captcha.cache.save QR.currentCaptcha if QR.currentCaptcha
+      Captcha.cache.save QR.currentCaptcha if QR.captcha is Captcha.v2 and QR.currentCaptcha
       delete QR.currentCaptcha
       QR.posts[0].unlock()
       QR.cooldown.auto = false

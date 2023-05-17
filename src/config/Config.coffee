@@ -526,10 +526,6 @@ Config =
         'Submit the post immediately when the captcha is completed.'
         1
       ]
-      'Captcha Fixes': [
-        true
-        'Make captcha easier to use, especially with the keyboard.'
-      ]
       'Force Noscript Captcha': [
         false
         'Use the non-Javascript fallback captcha even if Javascript is enabled.'
@@ -783,10 +779,11 @@ Config =
     https://www.facebook.com/photo.php?fbid=%$1;regexp:/^\\d+_(\\d+)_\\d+_[no]\\b/
 
     # Reverse image search:
-    https://www.google.com/searchbyimage?image_url=%IMG&safe=off
+    https://www.google.com/searchbyimage?sbisrc=4chanx&image_url=%IMG&safe=off
     https://yandex.com/images/search?rpt=imageview&url=%IMG
     #//tineye.com/search?url=%IMG
     #//www.bing.com/images/search?q=imgurl:%IMG&view=detailv2&iss=sbi#enterInsights
+    #https://lens.google.com/uploadbyurl?url=%IMG;text:lens
 
     # Specialized reverse image search:
     //iqdb.org/?url=%IMG
@@ -1172,13 +1169,6 @@ Config =
     'updater.position':        'bottom: 0px; left: 0px;'
     'thread-watcher.position': 'top: 50px; left: 0px;'
     'qr.position':             'top: 50px; right: 0px;'
-
-  captchaServiceDomain: ''
-  captchaServiceKey: [{
-    'https://api.captcha.guru': ''
-    'https://azcaptcha.com':    ''
-    'https://2captcha.com':     ''
-  }]
 
   fourchanImageHost: 'i.4cdn.org'
 

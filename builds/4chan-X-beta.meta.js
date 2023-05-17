@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         4chan X beta
-// @version      1.14.21.0
+// @version      1.14.22.4
 // @minGMVer     1.14
 // @minFFVer     26
 // @namespace    4chan-X
@@ -34,8 +34,8 @@
 // @include      https://gnfos.com/*
 // @include      https://himasugi.blog/*
 // @include      https://www.himasugi.blog/*
-// @include      https://kakashi-nenpo.com/*
-// @include      https://www.kakashi-nenpo.com/*
+// @include      https://kakashinenpo.com/*
+// @include      https://www.kakashinenpo.com/*
 // @include      https://kissu.moe/*
 // @include      https://www.kissu.moe/*
 // @include      https://lainchan.org/*
@@ -45,7 +45,6 @@
 // @include      https://www.ota-ch.com/*
 // @include      https://ponyville.us/*
 // @include      https://www.ponyville.us/*
-// @include      https://samachan.org/*
 // @include      https://smuglo.li/*
 // @include      https://notso.smuglo.li/*
 // @include      https://smugloli.net/*
@@ -55,12 +54,6 @@
 // @include      https://sushigirl.us/*
 // @include      https://www.sushigirl.us/*
 // @include      https://tvch.moe/*
-// @include      https://www.google.com/recaptcha/api2/anchor?k=6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc*
-// @include      https://www.google.com/recaptcha/api2/frame?*&k=6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc*
-// @include      https://www.google.com/recaptcha/api2/frame?*&k=887877714&*
-// @include      https://www.google.com/recaptcha/api2/bframe?*&k=6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc*
-// @include      http://www.google.com/recaptcha/api/fallback?k=6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc*
-// @include      https://www.google.com/recaptcha/api/fallback?k=6Ldp2bsSAAAAAAJ5uyx_lx34lJeEpTLVkP5k04qc*
 // @exclude      http://www.4chan.org/advertise
 // @exclude      https://www.4chan.org/advertise
 // @exclude      http://www.4chan.org/advertise?*
@@ -82,17 +75,16 @@
 // @connect      4cdn.org
 // @connect      4chenz.github.io
 // @connect      archive.4plebs.org
-// @connect      archive.nyafuu.org
-// @connect      archive.rebeccablacktech.com
 // @connect      warosu.org
 // @connect      desuarchive.org
 // @connect      boards.fireden.net
 // @connect      arch.b4k.co
-// @connect      archive.b-stats.org
 // @connect      archived.moe
 // @connect      thebarchive.com
 // @connect      archiveofsins.com
 // @connect      www.tokyochronos.net
+// @connect      archive.palanq.win
+// @connect      eientei.xyz
 // @connect      api.clyp.it
 // @connect      api.dailymotion.com
 // @connect      api.github.com

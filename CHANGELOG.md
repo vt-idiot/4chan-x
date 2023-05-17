@@ -2,7 +2,61 @@
 
 -Sometimes the changelog has notes (not comprehensive) acknowledging people's work. This does not mean the changes are their fault, only that their code was used. All changes to the script are chosen by and the fault of the maintainer (ccd0).
 
+### v1.14.22
+
+**v1.14.22.4** *(2023-02-28)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.4/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.4/builds/4chan-X-noupdate.crx)]
+- Recognize JPEG files with .jfif extensions as images for purposes of Image Hover etc.; also recognize .avif and .jxl files as images.
+- Avoid breaking sauce settings of people with links to original Google Images and Google Lens, provided they didn't already update to v1.14.22.3.
+
+**v1.14.22.3** *(2023-02-27)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.3/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.3/builds/4chan-X-noupdate.crx)]
+- Switch Google image search back to old version, thanks to https://boards.4channel.org/g/thread/91737566#p91789527 and others.
+
+**v1.14.22.2** *(2023-02-27)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.2/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.2/builds/4chan-X-noupdate.crx)]
+- Fix quick reply not opening immediately after making post. #2905
+- Update Randomize Filename to match current 4chan format. https://boards.4channel.org/g/thread/91737566#p91784238
+- Remove empty space from ads if they don't load. https://kissu.moe/b/res/7155#11052
+- Make post from QR more like original form post to possibly reduce posting errors. #3330
+- Disable Javascript Whitelist on captcha iframe to fix issues with Cloudflare scripts. #3292
+- (4chenz) Add Google Lens image search url.
+- Change Google image search to Google Lens due to old link not working.
+- Change issues link from dead gitreports.com back to Github.
+
+**v1.14.22.1** *(2022-07-14)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.1/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.1/builds/4chan-X-noupdate.crx)]
+- Remove old /nen/, add successor site.
+
+**v1.14.22.0** *(2022-05-23)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.0/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.22.0/builds/4chan-X-noupdate.crx)]
+- Based on v1.14.21.7.
+- (puckzxz) Added option in Thread Watcher to open dead threads
+- (paradox460) Add a menu item to open unread in ThreadWatcher
+- (WastedMeerkat) Fixed Twitch.tv embeds
+- (PinkCatGoodActually) Fix vocaroo embeds
+- Remove google.com permissions.
+- Remove obsolete 'Captcha Fixes' and 'Captcha Solving Service' options and related code.
+
 ### v1.14.21
+
+**v1.14.21.7** *(2021-07-08)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.7/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.7/builds/4chan-X-noupdate.crx)]
+- Don't warn on posting without captcha when "Verification not required."
+- Fix error reported in #3124.
+
+**v1.14.21.6** *(2021-07-08)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.6/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.6/builds/4chan-X-noupdate.crx)]
+- Captcha related bugfixes.
+
+**v1.14.21.5** *(2021-07-07)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.5/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.5/builds/4chan-X-noupdate.crx)]
+- Fix bug causing captcha to sometimes not work when replying from index.
+
+**v1.14.21.4** *(2021-07-05)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.4/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.4/builds/4chan-X-noupdate.crx)]
+- Preliminary support for new first-party captcha on 4chan.
+
+**v1.14.21.3** *(2021-05-07)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.3/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.3/builds/4chan-X-noupdate.crx)]
+- Fix race condition causing unread posts tracking to malfunction.
+
+**v1.14.21.2** *(2021-05-07)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.2/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.2/builds/4chan-X-noupdate.crx)]
+- Fix bug introduced in v1.14.21.1 causing error message when menu opened.
+
+**v1.14.21.1** *(2021-05-06)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.1/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.1/builds/4chan-X-noupdate.crx)]
+- Fix some posts not being processed on 4chan /g/ and /sci/.
+- Update for flag changes on 4chan /mlp/ and /pol/.
 
 **v1.14.21.0** *(2021-01-15)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.0/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.14.21.0/builds/4chan-X-noupdate.crx)]
 - Based on v1.14.20.6.
@@ -1264,7 +1318,7 @@
 **v1.12.0.0** *(2016-06-19)* - [[Userscript](https://raw.githubusercontent.com/ccd0/4chan-x/1.12.0.0/builds/4chan-X-noupdate.user.js)] [[Chrome extension](https://raw.githubusercontent.com/ccd0/4chan-x/1.12.0.0/builds/4chan-X-noupdate.crx)]
 - Based on v1.11.35.6.
 - Some workarounds for old browsers have been dropped. Those using versions older than Chromium/Chrome 38, Maxthon 4.9, or SeaMonkey 2.35 may need to upgrade for 4chan X to work.
-- Some obsolete or not-often-used options have been removed.  Please speak up if you want any of these options restored by [opening an issue](https://gitreports.com/issue/ccd0/4chan-x).
+- Some obsolete or not-often-used options have been removed.  Please speak up if you want any of these options restored by [opening an issue](https://github.com/ccd0/4chan-x/issues).
   - `Archive Report`, `Restart when Opened`, `Show Name and Subject`, `Thread Excerpt`, and `Remove Thread Excerpt` have been removed.
   - The options to disable `QR Shortcut`, `Bottom QR Link`, and `Open Post in New Tab` have been removed.
   - The `disabled` option in the archive choices section of the Advanced settings have been removed. A better way to disable access to a particular archive is to add (using 4plebs as an example) `{"uid": 3, "boards": []}` to the `Archive Lists` setting.

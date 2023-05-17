@@ -57,7 +57,7 @@ QR.post = class
       if QR.nodes.flag
         @flag = if prev
           prev.flag
-        else
+        else if persona.flag and persona.flag of g.BOARD.config.board_flags
           persona.flag
       (@load() if QR.selected is @) # load persona
     @select() if select
@@ -74,6 +74,7 @@ QR.post = class
       (QR.posts[index-1] or QR.posts[index+1]).select()
     QR.posts.splice index, 1
     QR.status()
+    QR.captcha.updateThread?()
 
   delete: ->
     $.rm @nodes.el
@@ -123,12 +124,13 @@ QR.post = class
       return
     {name}  = input.dataset
     return unless name in ['thread', 'name', 'email', 'sub', 'com', 'filename', 'flag']
-    prev    = @[name]
+    prev    = @[name] or input.dataset.default or null
     @[name] = input.value or input.dataset.default or null
     switch name
       when 'thread'
         (if @thread isnt 'new' then $.addClass else $.rmClass) QR.nodes.el, 'reply-to-thread'
         QR.status()
+        QR.captcha.updateThread?()
       when 'com'
         @updateComment()
       when 'filename'
@@ -167,7 +169,8 @@ QR.post = class
       QR.characterCount()
     @nodes.span.textContent = @com
     QR.captcha.moreNeeded()
-    Captcha.cache.prerequest()
+    if QR.captcha is Captcha.v2
+      Captcha.cache.prerequest()
 
   isOnlyQuotes: ->
     (@com or '').trim() is (@quotedText or '').trim()
@@ -406,3 +409,4 @@ QR.post = class
     post = QR.posts.splice(oldIndex, 1)[0]
     QR.posts.splice newIndex, 0, post
     QR.status()
+    QR.captcha.updateThread?()
